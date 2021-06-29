@@ -137,6 +137,16 @@ classdef logger < handle
         function c=u8toBase64(data_in)
             if isa(data_in,'uint8')
                 c=char(org.apache.commons.codec.binary.Base64.encodeBase64(data_in))';
+            else
+                error('input must be a uint8 array')
+            end
+        end
+        
+        function a=base64toU8(str_in)
+            if ischar(str_in)
+                a=uint8(org.apache.commons.codec.binary.Base64.decodeBase64(uint8(str_in)));
+            else
+                error('input must be a string')
             end
         end
     end
